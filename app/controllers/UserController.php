@@ -8,6 +8,8 @@
 
 		// Loading the login view.
 		public function displayLogin() {
+            $teamsManager = new TeamsManager();
+            $teams = $teamsManager->getAll();
 			require_once('app/views/user/login-view.php');
 		}
 
@@ -18,6 +20,7 @@
 
 		public function login() {
 			$errors = [];
+
 
 			// If the username is not set, adding the error to the list.
 			if(empty($_POST['username'])) {

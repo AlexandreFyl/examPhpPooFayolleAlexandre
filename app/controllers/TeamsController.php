@@ -11,7 +11,7 @@ class TeamsController
 
     //add
     public function addForm(){
-        require 'app/views/add/add-view.php';
+        require './app/views/add/add-view.php';
     }
 
     public function commitAdd()
@@ -26,7 +26,7 @@ class TeamsController
     {
         $team = $this->teamsManager->getById($id);
 
-        require '../views/edit/edit-view.php';
+        require './app/views/edit/edit-view.php';
     }
 
     public function commitEdit($id)
@@ -48,12 +48,12 @@ class TeamsController
     //getters
     public function showOne($id){
         $team = $this->teamsManager->getById($id);
-        require '../views/details/details-view.php';
+        require './app/views/details/details-view.php';
     }
 
     public function showAll(){
         $teams = $this->teamsManager->getAll();
-        require 'app/views/dashboard/home-view.php';
+        require './app/views/parts/tableTeams.php';
     }
 
 

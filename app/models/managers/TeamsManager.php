@@ -38,11 +38,11 @@ class TeamsManager extends DatabaseManager
 
         $request = $this->pdo->prepare("UPDATE  team SET name =?, points = ?, goalsScored = ?, goalsConceded = ? WHERE id = ?");
 
+        $request->bindParam(5, $id);
         $request->bindParam(1, $name);
         $request->bindParam(2, $points);
         $request->bindParam(3, $goalsScored);
         $request->bindParam(4, $goalsConceded);
-        $request->bindParam(5, $id);
 
         $request->execute();
 
@@ -62,10 +62,10 @@ class TeamsManager extends DatabaseManager
     public function getAll()
     {
         $teams = [];
-        $sql =  'SELECT * FROM team ORDER BY points';
+        $sql =  'SELECT * FROM team ORDER BY points DESC, goalsConceded, goalsScored DESC';
 
         foreach  ($this->pdo->query($sql) as $row) {
-            $teams[] = new Team( $row['name'], $row['points'], $row['goalsScored'], $row['goalsConceded'], $row['id']);
+            $teams[] = new Team( $row['id'], $row['name'], $row['points'], $row['goalsScored'], $row['goalsConceded']);
         }
 
 
@@ -81,7 +81,7 @@ class TeamsManager extends DatabaseManager
         $request->execute();
 
         $res = $request->fetch();
-        return new Team( $res['name'], $res['points'], $res['goalsScored'], $res['goalsConceded'],$res['id']);
+        return new Team( $res['id'], $res['name'], $res['points'], $res['goalsScored'],$res['goalsConceded']);
     }
 
 

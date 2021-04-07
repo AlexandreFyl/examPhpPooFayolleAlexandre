@@ -1,61 +1,70 @@
 <?php
-	// Importing header.
-	require_once('app/views/parts/header.php');
+// Importing header.
+require_once('app/views/parts/header.php');
 ?>
 
 <main>
-	<?php
-		if (isset($errors)) {
-			?>
-			
-			<div class="row my-4">
-				<div class="col-8 mx-auto">
-					<div class="card shadow text-light bg-dark p-4">
-						<h2 class="text-warning text-center"><?= sizeof($errors) > 1 ? 'Erreurs' : 'Erreur' ?></h2>
-						<ul class="mt-2">
-							<?php
-								foreach ($errors as $error) {
-									?>
+    <?php
+    if (isset($errors)) {
+        ?>
 
-									<li><?= $error ?></li>
+        <div class="row my-4">
+            <div class="col-8 mx-auto">
+                <div class="card shadow text-light bg-dark p-4">
+                    <h2 class="text-warning text-center"><?= sizeof($errors) > 1 ? 'Erreurs' : 'Erreur' ?></h2>
+                    <ul class="mt-2">
+                        <?php
+                        foreach ($errors as $error) {
+                            ?>
 
-									<?php
-								}
-							?>
-						</ul>
-					</div>
-				</div>
-			</div>
+                            <li><?= $error ?></li>
 
-			<?php
-		}
-	?>
-	<div class="row my-4">
-		<div class="col-8 mx-auto">
-			<div class="card shadow text-light bg-dark p-4">
-				<h2 class="text-center">Connexion</h2>
-				<form method="post" action="index.php?page=user&action=login">
-					<div class="form-group">
-						<label for="username">Nom d'utilisateur</label>
-						<input id="username" class="form-control" type="text" name="username" placeholder="Nom d'utilisateur...">
-					</div>
-					<div class="form-group">
-						<label for="password">Mot de passe</label>
-						<input id="password" class="form-control" type="password" name="password" placeholder="Mot de passe...">
-					</div>
-					<div class="text-center mt-4">
-						<button class="btn btn-primary" type="submit">Se connecter</button>
-					</div>
-					<div class="text-center mt-4">
-						<a class="text-light" href="index.php?page=user&action=register">Je n'ai pas encore de compte ! </a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <?php
+    }
+    ?>
+    <div class="row my-4">
+        <div class="col-10 mx-auto">
+            <div class="card shadow text-light bg-dark p-4">
+                <h2 class="text-center">Connexion</h2>
+                <form method="post" action="index.php?page=user&action=login">
+                    <div class="form-group">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input id="username" class="form-control" type="text" name="username"
+                               placeholder="Nom d'utilisateur...">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input id="password" class="form-control" type="password" name="password"
+                               placeholder="Mot de passe...">
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary" type="submit">Se connecter</button>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a class="text-light" href="index.php?page=user&action=register">Je n'ai pas encore de compte
+                            ! </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-8 mx-auto mt-3">
+            <h3 class="text-center mb-4">Classement actuel ligue 1 :</h3>
+            <?php include 'app/views/parts/tableTeamsNoCrud.php' ?>
+        </div>
+    </div>
+
 </main>
 
 <?php
-	// Importing footer.
-	require_once('app/views/parts/footer.php');
+// Importing footer.
+require_once('app/views/parts/footer.php');
 ?>

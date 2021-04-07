@@ -78,7 +78,6 @@ if (array_search($_GET['page'], $pages) === false) {
     // If the asked page is dashboard.
     if ($_GET['page'] === 'dashboard') {
         $dashboardController = new DashboardController();
-        $teamsController = new TeamsController();
 
         // If there is not a session, redirecting to the login view.
         if (empty($_SESSION)) {
@@ -89,13 +88,27 @@ if (array_search($_GET['page'], $pages) === false) {
         // Checking the requested action and processing it.
         if ($_GET['action'] === 'home') {
             $dashboardController->displayHome();
-        } else {
+        } else if ($_GET['action'] === 'delete' && isset($_GET['id'])){
+            $teamsController = new TeamsController();
+            $teamsController->delete($_GET['id']);
+        } else if ($_GET['action'] === 'edit' && isset($_GET['id'])){
+            $teamsController = new TeamsController();
+            $teamsController->editForm($_GET['id']);
+        } else if ($_GET['action'] === 'commitEdit' && isset($_GET['id'])){
+            $teamsController = new TeamsController();
+            $teamsController->commitEdit($_GET['id']);
+        } else if ($_GET['action'] === 'add'){
+            $teamsController = new TeamsController();
+            $teamsController->addForm();
+        } else if ($_GET['action'] === 'commitAdd'){
+            $teamsController = new TeamsController();
+            $teamsController->commitAdd();
+        }
+        else {
             throw new Exception('Page introuvable', 404);
         }
     }
+
+
 }
-
-
-
-//
 ?>
